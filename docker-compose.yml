@@ -46,6 +46,9 @@ services:
     network_mode: service:vpn
 
     environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
       - WEBUI_PORT=5080
     volumes:
       - qbittorrent-config:/config
@@ -59,6 +62,10 @@ services:
     networks:
       mynetwork:
         ipv4_address: ${RADARR_STATIC_CONTAINER_IP}
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
     ports:
       - 7878:7878
     volumes:
@@ -72,6 +79,10 @@ services:
     networks:
       mynetwork:
         ipv4_address: ${SONARR_STATIC_CONTAINER_IP}
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
     volumes:
       - sonarr-config:/config
       - torrent-downloads:/downloads
@@ -86,6 +97,10 @@ services:
       vpn:
         condition: service_healthy
     network_mode: service:vpn
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
     volumes:
       - prowlarr-config:/config
     restart: unless-stopped
@@ -95,6 +110,10 @@ services:
     container_name: jellyseerr
     networks:
       - mynetwork
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
     volumes:
       - jellyseerr-config:/app/config
     ports:
@@ -106,6 +125,10 @@ services:
     container_name: jellyfin
     networks:
       - mynetwork
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
     volumes:
       - jellyfin-config:/config
       - torrent-downloads:/data
