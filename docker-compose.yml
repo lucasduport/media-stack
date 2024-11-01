@@ -9,14 +9,13 @@ services:
     cap_add:
       - NET_ADMIN
     environment:
-      - WIREGUARD_PUBLIC_KEY=${WIREGUARD_PUBLIC_KEY} # "PublicKey" under [Peer] in WG Config
+      - VPN_SERVICE_PROVIDER=protonvpn
+      - VPN_TYPE=wireguard
       - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY} # "PrivateKey" under [Interface] in WG Config - only shown on config creation
-      - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES} # "Address" under [Interface] in WG Config
-      - VPN_ENDPOINT_IP=${VPN_ENDPOINT_IP} # "Endpoint" under [Peer] in WG Config
-      - VPN_ENDPOINT_PORT=${VPN_ENDPOINT_PORT} # should be the default 51820 but can confirm by seeing the port after IP in "Endpoint"
-      - VPN_DNS_ADDRESS=${VPN_DNS_ADDRESS} # "DNS" under [Interface] in WG Config
-      - VPN_PORT_FORWARDING=${VPN_PORT_FORWARDING}
-      - VPN_PORT_FORWARDING_PROVIDER=${VPN_PORT_FORWARDING_PROVIDER}
+      - SERVER_COUNTRIES=Netherlands
+      - FREE_ONLY=on
+      - PORT_FORWARD_ONLY=on
+      - VPN_PORT_FORWARDING_PROVIDER=protonvpn
 
     networks:
       - mynetwork
